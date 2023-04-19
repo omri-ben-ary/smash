@@ -42,7 +42,9 @@ public:
 };
 
 class PipeCommand : public Command {
-    // TODO: Add your data members
+    std::string command;
+    std::string filename;
+    bool toError;
 public:
     PipeCommand(const char* cmd_line);
     virtual ~PipeCommand() {}
@@ -50,10 +52,12 @@ public:
 };
 
 class RedirectionCommand : public Command {
-    // TODO: Add your data members
+    std::string command;
+    std::string filename;
+    bool toAppend{};
 public:
     explicit RedirectionCommand(const char* cmd_line);
-    virtual ~RedirectionCommand() {}
+    ~RedirectionCommand() {}
     void execute() override;
     //void prepare() override;
     //void cleanup() override;
@@ -220,7 +224,7 @@ public:
 class SetcoreCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
-    SetcoreCommand(const char* cmd_line);
+    explicit SetcoreCommand(const char* cmd_line);
     virtual ~SetcoreCommand() {}
     void execute() override;
 };
@@ -281,6 +285,7 @@ public:
     bool stopFGProcess();
     void removeFGProcess();
     bool isShellInFG() const;
+    void updateJobList();
 };
 
 #endif //HW1WET_COMMAND_H_

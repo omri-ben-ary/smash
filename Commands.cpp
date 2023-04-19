@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 #include <iomanip>
 #include <algorithm>
+#include <fcntl.h>
 #include "Commands.h"
 #include "signals.h"
 #include "printStatements.h"
@@ -37,7 +38,9 @@ namespace SyscallErrorMessages
     static const char *WAITPID_FAILED = "smash error: waitpid failed";
     static const char *TIME_ERROR = "smash error: time failed";
     static const char *SETPGRP_FAILED = "smash error: setpgrp failed";
-
+    static const char *OPEN_FAILED = "smash error: open failed";
+    static const char *DUP_FAILED = "smash error: dup failed";
+    static const char *CLOSE_FAILED = "smash error: close failed";
     /*
     static const char *SEEK_FAILED = "smash error: seek failed";
     static const char *READ_ERROR = "smash error: read failed";
@@ -104,7 +107,17 @@ void _removeBackgroundSign(char* cmd_line) {
 // TODO: Add your implementation for classes in Commands.h
 /* ~~~~~~~~~~~~~~~~~~~~ SMASH methods implementation ~~~~~~~~~~~~~~~~~~~"*/
 
-const char* const SmallShell::DEFAULT_PROMPT = "smash";
+const char* const SmallShell::DEFAULT_PROMPT = "smash";     //why not in h file?
+
+bool isRedirection(std::string cmd_line)
+{
+    return (cmd_line.find('>') != std::string::npos);
+}
+
+bool isPipe(std::string cmd_line)
+{
+    return (cmd_line.find('|') != std::string::npos);
+}
 
 SmallShell::SmallShell() : current_prompt(DEFAULT_PROMPT), last_working_directory()
 {
@@ -132,7 +145,14 @@ Command * SmallShell::CreateCommand(const char* cmd_line)
     string cmd_s = _trim(string(cmd_line));
     string firstWord = cmd_s.substr(0, cmd_s.find_first_of(" \n"));
     this->jobs_list->removeFinishedJobs();
-
+    if(isRedirection(cmd_s))
+    {
+        return new RedirectionCommand(cmd_line);
+    }
+    if(isPipe(cmd_s))
+    {
+        //return new PipeCommand(cmd_line);
+    }
     if ((firstWord == "chprompt") || (firstWord == "chprompt&"))
     {
         return new ChangePromptCommand(cmd_line);
@@ -263,6 +283,9 @@ bool SmallShell::isShellInFG() const
     return this->is_shell_in_fg;
 }
 
+void SmallShell::updateJobList() {
+    jobs_list->removeFinishedJobs();
+}
 
 
 /* ~~~~~~~~~~~~~~~~~~~~ Built-in Commands methods implementation ~~~~~~~~~~~~~~~~~~~"*/
@@ -577,6 +600,87 @@ void KillCommand::execute()
     }
     jobs->sendSignalToJob(job_id, sig_num, true);
 
+}
+
+//TODO
+RedirectionCommand::RedirectionCommand(const char *cmd_line) : Command(cmd_line), command(), filename(), toAppend(false) {
+    std::string str_cmd_line= string(cmd_line);
+    if(str_cmd_line.find(">>") != std::string::npos)
+    {
+        toAppend = true;
+    }
+    size_t separate = str_cmd_line.find('>');
+    command = str_cmd_line.substr(0, separate);
+    command = command.substr(0, str_cmd_line.find_first_of(' '));
+    filename = str_cmd_line.substr(separate);
+    filename = filename.substr(filename.find_first_not_of(" >"));
+    filename = filename.substr(0, filename.find_first_of(" \n"));
+}
+
+void RedirectionCommand::execute() {
+    int fd;
+    if(toAppend)
+    {
+        fd = open(filename.c_str(), O_RDWR | O_CREAT | O_APPEND, 0655);
+    }
+    else
+    {
+        fd = open(filename.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0655);
+    }
+    if(fd == -1)
+    {
+        perror(SyscallErrorMessages::OPEN_FAILED);
+        return;
+    }
+    pid_t c_pid = fork();
+    if (c_pid == -1)
+    {
+        close(fd);  //what to do if close fails??
+        perror(SyscallErrorMessages::FORK_FAILED);
+        return;
+    }
+    if(c_pid == 0)
+    {
+        if (setpgrp() == -1)
+        {
+            perror(SyscallErrorMessages::SETPGRP_FAILED);
+            return;
+        }
+        SmallShell& smash = SmallShell::getInstance();
+        if(dup2(STDOUT_FILENO,fd) == -1)
+        {
+            perror(SyscallErrorMessages::DUP_FAILED);
+            return;
+        }
+        cout << "dup" << std::endl;
+        Command* cmd = smash.CreateCommand(command.c_str());
+        smash.updateJobList();
+        cmd->execute();
+        if(close(fd) == -1)
+        {
+            perror(SyscallErrorMessages::CLOSE_FAILED);
+            return;
+        }
+        exit(0);
+    }
+    else
+    {
+        wait(nullptr);
+        /*int wstatus;
+        SmallShell& smash = SmallShell::getInstance();
+        smash.loadFGProcess(c_pid, this->getCmdLine());
+        if (waitpid(c_pid, &wstatus, WUNTRACED) == -1) // maybe can delete wstatus
+        {
+            perror(SyscallErrorMessages::WAITPID_FAILED);
+            return;
+        }
+        smash.removeFGProcess();*/
+        if(close(fd) == -1)
+        {
+            perror(SyscallErrorMessages::CLOSE_FAILED);
+            return;
+        }
+    }
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~ External Commands methods implementation ~~~~~~~~~~~~~~~~~~~"*/
@@ -982,5 +1086,3 @@ bool ForegroundProcess::sendSignal(int sig_num) const
     }
     return true;
 }
-
-
