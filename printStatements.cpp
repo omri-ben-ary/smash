@@ -113,6 +113,14 @@ namespace GeneralStatements
     {
         std::cout << "smash: timeout "<< time << " " << command_name <<" timed out!" << std::endl;
     }
+    void printInvalidCoreNumber()
+    {
+        std::cout << "smash error: setcore: invalid core number" << std::endl;
+    }
+    void printFileInfo(const std::string& path, const std::string& filetype, long size)
+    {
+        std::cout << path << "'s type is " << '"' << filetype << '"' << " and takes up " << size << " bytes" << std::endl;
+    }
 }/*
 
 

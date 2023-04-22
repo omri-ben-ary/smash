@@ -42,8 +42,8 @@ public:
 };
 
 class PipeCommand : public Command {
-    std::string command;
-    std::string filename;
+    std::string command1;
+    std::string command2;
     bool toError;
 public:
     PipeCommand(const char* cmd_line);
@@ -206,23 +206,30 @@ public:
 };
 
 class ChmodCommand : public BuiltInCommand {
-    // TODO: Add your data members
+    int mode;
+    mode_t parseMode(int mode);
+    mode_t parseFirstDigit(int digit);
+    mode_t parseSecondDigit(int digit);
+    mode_t parseThirdDigit(int digit);
+    mode_t parseFourthDigit(int digit);
 public:
-    ChmodCommand(const char* cmd_line);
+    explicit ChmodCommand(const char* cmd_line);
     virtual ~ChmodCommand() {}
     void execute() override;
 };
 
 class GetFileTypeCommand : public BuiltInCommand {
-    // TODO: Add your data members
+    std::string filetype,path;
+    long size;
+    static std::string getFileTypeInternal(mode_t mode);
 public:
-    GetFileTypeCommand(const char* cmd_line);
+    explicit GetFileTypeCommand(const char* cmd_line);
     virtual ~GetFileTypeCommand() {}
     void execute() override;
 };
 
 class SetcoreCommand : public BuiltInCommand {
-    // TODO: Add your data members
+    int job_id,core_num;
 public:
     explicit SetcoreCommand(const char* cmd_line);
     virtual ~SetcoreCommand() {}
@@ -286,6 +293,7 @@ public:
     void removeFGProcess();
     bool isShellInFG() const;
     void updateJobList();
+    pid_t getJobPid(int job_id) const;
 };
 
 #endif //HW1WET_COMMAND_H_

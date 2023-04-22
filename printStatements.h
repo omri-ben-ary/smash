@@ -32,6 +32,8 @@ namespace GeneralStatements
     void printProcessWasKilled(pid_t pid);
     void printProcessWasStopped(pid_t pid);
     void printTimedOut(const std::string& command_name, int time);
+    void printInvalidCoreNumber();
+    void printFileInfo(const std::string& path, const std::string& filetype, long size);
 }
 /*
 

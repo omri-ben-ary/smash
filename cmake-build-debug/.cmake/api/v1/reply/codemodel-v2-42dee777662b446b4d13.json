@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.25"
+						"string" : "3.20"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/student/CLionProjects/HW1/cmake-build-debug",
-		"source" : "/home/student/CLionProjects/HW1"
+		"build" : "/home/student/Desktop/smash/smash/cmake-build-debug",
+		"source" : "/home/student/Desktop/smash/smash"
 	},
 	"version" : 
 	{

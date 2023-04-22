@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <fcntl.h>
+#include <sys/stat.h>
 #include "Commands.h"
 #include "signals.h"
 #include "printStatements.h"
@@ -41,6 +42,9 @@ namespace SyscallErrorMessages
     static const char *OPEN_FAILED = "smash error: open failed";
     static const char *DUP_FAILED = "smash error: dup failed";
     static const char *CLOSE_FAILED = "smash error: close failed";
+    static const char *PIPE_FAILED = "smash error: pipe failed";
+    static const char *STAT_FAILED = "smash error: stat failed";
+    static const char *CHMOD_FAILED = "smash error: chmod failed";
     /*
     static const char *SEEK_FAILED = "smash error: seek failed";
     static const char *READ_ERROR = "smash error: read failed";
@@ -151,7 +155,7 @@ Command * SmallShell::CreateCommand(const char* cmd_line)
     }
     if(isPipe(cmd_s))
     {
-        //return new PipeCommand(cmd_line);
+        return new PipeCommand(cmd_line);
     }
     if ((firstWord == "chprompt") || (firstWord == "chprompt&"))
     {
@@ -188,6 +192,18 @@ Command * SmallShell::CreateCommand(const char* cmd_line)
     else if ((firstWord == "kill") || (firstWord == "kill&"))
     {
         return new KillCommand(cmd_line, jobs_list);
+    }
+    else if ((firstWord == "setcore") || (firstWord == "setcore&"))
+    {
+        return new SetcoreCommand(cmd_line);
+    }
+    else if ((firstWord == "getfiletype") || (firstWord == "getfiletype&"))
+    {
+        return new GetFileTypeCommand(cmd_line);
+    }
+    else if ((firstWord == "chmod") || (firstWord == "chmod&"))
+    {
+        return new ChmodCommand(cmd_line);
     }
     else
     {
@@ -285,6 +301,11 @@ bool SmallShell::isShellInFG() const
 
 void SmallShell::updateJobList() {
     jobs_list->removeFinishedJobs();
+}
+
+pid_t SmallShell::getJobPid(int job_id) const {
+    JobEntry* job = this->jobs_list->getJobById(job_id);
+    return (job == nullptr)? -1 : job->getJobPID();
 }
 
 
@@ -602,7 +623,6 @@ void KillCommand::execute()
 
 }
 
-//TODO
 RedirectionCommand::RedirectionCommand(const char *cmd_line) : Command(cmd_line), command(), filename(), toAppend(false) {
     std::string str_cmd_line= string(cmd_line);
     if(str_cmd_line.find(">>") != std::string::npos)
@@ -611,14 +631,21 @@ RedirectionCommand::RedirectionCommand(const char *cmd_line) : Command(cmd_line)
     }
     size_t separate = str_cmd_line.find('>');
     command = str_cmd_line.substr(0, separate);
-    command = command.substr(0, str_cmd_line.find_first_of(' '));
+    command = command.substr(command.find_first_not_of(' '));
+    command = command.substr(0, command.find_first_of(" \n"));
     filename = str_cmd_line.substr(separate);
     filename = filename.substr(filename.find_first_not_of(" >"));
-    filename = filename.substr(0, filename.find_first_of(" \n"));
+    filename = filename.substr(0, filename.find_first_of(" &\n"));
 }
 
 void RedirectionCommand::execute() {
     int fd;
+    int std_fd = dup(STDOUT_FILENO);
+    if(std_fd == -1)
+    {
+        perror(SyscallErrorMessages::DUP_FAILED);
+        return;
+    }
     if(toAppend)
     {
         fd = open(filename.c_str(), O_RDWR | O_CREAT | O_APPEND, 0655);
@@ -632,55 +659,396 @@ void RedirectionCommand::execute() {
         perror(SyscallErrorMessages::OPEN_FAILED);
         return;
     }
-    pid_t c_pid = fork();
-    if (c_pid == -1)
+
+    if(dup2(fd,STDOUT_FILENO) == -1)
     {
         close(fd);  //what to do if close fails??
-        perror(SyscallErrorMessages::FORK_FAILED);
+        close(std_fd);
+        perror(SyscallErrorMessages::DUP_FAILED);
         return;
     }
-    if(c_pid == 0)
+    SmallShell& smash = SmallShell::getInstance();
+    Command* cmd = smash.CreateCommand(command.c_str());
+    smash.updateJobList();
+    cmd->execute();
+    if(dup2(std_fd,STDOUT_FILENO) == -1)
     {
-        if (setpgrp() == -1)
+        close(fd);  //what to do if close fails??
+        close(std_fd);
+        perror(SyscallErrorMessages::DUP_FAILED);
+        return;
+    }
+    if(close(std_fd) == -1)
+    {
+        //close the second fd??
+        perror(SyscallErrorMessages::CLOSE_FAILED);
+        return;
+    }
+    if(close(fd) == -1)
+    {
+        perror(SyscallErrorMessages::CLOSE_FAILED);
+        return;
+    }
+}
+
+//TODO
+PipeCommand::PipeCommand(const char *cmd_line) : Command(cmd_line), command1(), command2(), toError(false) {
+    std::string str_cmd_line= string(cmd_line);
+    if(str_cmd_line.find("|&") != std::string::npos)
+    {
+        toError = true;
+    }
+    size_t separate = str_cmd_line.find('|');
+    command1 = str_cmd_line.substr(0, separate);
+    command1 = command1.substr(command1.find_first_not_of(' '));
+    command1 = command1.substr(0, command1.find_first_of(" \n"));
+    command2 = str_cmd_line.substr(separate);
+    command2 = command2.substr(command2.find_first_not_of(" |&"));
+    command2 = command2.substr(0, command2.find_first_of("&\n"));
+}
+
+void PipeCommand::execute() {
+    int fd_array[2];
+    int std_fd_array[2];
+    if(pipe(fd_array) == -1)
+    {
+        perror(SyscallErrorMessages::PIPE_FAILED);
+        return;
+    }
+    std_fd_array[0] = dup(STDIN_FILENO);
+    if(std_fd_array[0] == -1)
+    {
+        close(fd_array[0]); //what to do if close fails??
+        close(fd_array[1]);
+        perror(SyscallErrorMessages::DUP_FAILED);
+        return;
+    }
+    if(dup2(fd_array[0], STDIN_FILENO) == -1)
+    {
+        close(fd_array[0]); //what to do if close fails??
+        close(fd_array[1]);
+        close(std_fd_array[0]);
+        perror(SyscallErrorMessages::DUP_FAILED);
+        return;
+    }
+    if(toError)
+    {
+        std_fd_array[1] = dup(STDERR_FILENO);
+        if(std_fd_array[1] == -1)
         {
-            perror(SyscallErrorMessages::SETPGRP_FAILED);
-            return;
-        }
-        SmallShell& smash = SmallShell::getInstance();
-        if(dup2(STDOUT_FILENO,fd) == -1)
-        {
+            close(fd_array[0]); //what to do if close fails??
+            close(fd_array[1]);
+            close(std_fd_array[0]);
             perror(SyscallErrorMessages::DUP_FAILED);
             return;
         }
-        cout << "dup" << std::endl;
-        Command* cmd = smash.CreateCommand(command.c_str());
-        smash.updateJobList();
-        cmd->execute();
-        if(close(fd) == -1)
+        if(dup2(fd_array[1], STDERR_FILENO) == -1)
         {
-            perror(SyscallErrorMessages::CLOSE_FAILED);
+            close(fd_array[0]); //what to do if close fails??
+            close(fd_array[1]);
+            close(std_fd_array[0]);
+            close(std_fd_array[1]);
+            perror(SyscallErrorMessages::DUP_FAILED);
             return;
         }
-        exit(0);
     }
     else
     {
-        wait(nullptr);
-        /*int wstatus;
-        SmallShell& smash = SmallShell::getInstance();
-        smash.loadFGProcess(c_pid, this->getCmdLine());
-        if (waitpid(c_pid, &wstatus, WUNTRACED) == -1) // maybe can delete wstatus
+        std_fd_array[1] = dup(STDOUT_FILENO);
+        if(std_fd_array[1] == -1)
         {
-            perror(SyscallErrorMessages::WAITPID_FAILED);
+            close(fd_array[0]); //what to do if close fails??
+            close(fd_array[1]);
+            close(std_fd_array[0]);
+            perror(SyscallErrorMessages::DUP_FAILED);
             return;
         }
-        smash.removeFGProcess();*/
-        if(close(fd) == -1)
+        if(dup2(fd_array[1], STDOUT_FILENO) == -1)
         {
-            perror(SyscallErrorMessages::CLOSE_FAILED);
+            close(fd_array[0]); //what to do if close fails??
+            close(fd_array[1]);
+            close(std_fd_array[0]);
+            close(std_fd_array[1]);
+            perror(SyscallErrorMessages::DUP_FAILED);
             return;
         }
     }
+    if(close(fd_array[0]) == -1)
+    {
+        //close the rest??
+        perror(SyscallErrorMessages::CLOSE_FAILED);
+        return;
+    }
+    if(close(fd_array[1]) == -1)
+    {
+        perror(SyscallErrorMessages::CLOSE_FAILED);
+        return;
+    }
+    SmallShell& smash = SmallShell::getInstance();
+    Command* cmd = smash.CreateCommand(command1.c_str());
+    smash.updateJobList();
+    cmd->execute();
+    if(toError)
+    {
+        if(dup2(std_fd_array[1],STDERR_FILENO) == -1)
+        {
+            close(fd_array[0]); //what to do if close fails??
+            close(fd_array[1]);
+            close(std_fd_array[0]);
+            close(std_fd_array[1]);
+            perror(SyscallErrorMessages::DUP_FAILED);
+            return;
+        }
+    }
+    else
+    {
+        if(dup2(std_fd_array[1],STDOUT_FILENO) == -1)
+        {
+            close(fd_array[0]); //what to do if close fails??
+            close(fd_array[1]);
+            close(std_fd_array[0]);
+            close(std_fd_array[1]);
+            perror(SyscallErrorMessages::DUP_FAILED);
+            return;
+        }
+    }
+    Command *cmd2 = smash.CreateCommand(command2.c_str());
+    smash.updateJobList();
+    cmd2->execute();
+    if(dup2(std_fd_array[0],STDIN_FILENO) == -1)
+    {
+        close(fd_array[0]); //what to do if close fails??
+        close(fd_array[1]);
+        close(std_fd_array[0]);
+        close(std_fd_array[1]);
+        perror(SyscallErrorMessages::DUP_FAILED);
+        return;
+    }
+    if(close(std_fd_array[0]) == -1)
+    {
+        //close the rest??
+        perror(SyscallErrorMessages::CLOSE_FAILED);
+        return;
+    }
+    if(close(std_fd_array[1]) == -1)
+    {
+        perror(SyscallErrorMessages::CLOSE_FAILED);
+        return;
+    }
+}
+
+SetcoreCommand::SetcoreCommand(const char *cmd_line) : BuiltInCommand(cmd_line), job_id(0), core_num(0) {
+
+}
+
+void SetcoreCommand::execute() {
+    char *cmd_args[COMMAND_MAX_ARGS];
+    int num_of_cmd_args = _parseCommandLine(this->getCmdLine(), cmd_args);
+    if(num_of_cmd_args != 3)
+    {
+        printInvalidArgs("setcore");
+        return;
+    }
+    try
+    {
+        job_id = stoi(string(cmd_args[1]));
+        core_num = stoi(string(cmd_args[2]));
+        if (!(isValidInt(job_id, cmd_args[1])) || !(isValidInt(core_num, cmd_args[2])))
+        {
+            printInvalidArgs("setcore");
+            return;
+        }
+    } catch (std::exception& e){
+        printInvalidArgs("setcore");
+        return;
+    }
+    cpu_set_t mask;
+    CPU_ZERO(&mask);
+    CPU_SET(core_num, &mask);
+    SmallShell& smash = SmallShell::getInstance();
+    pid_t pid = smash.getJobPid(job_id);
+    if(pid == -1)
+    {
+        printJobNotExist("setcore", job_id);
+        return;
+    }
+    if(sched_setaffinity(pid, sizeof(cpu_set_t),&mask) == -1)
+    {
+        printInvalidCoreNumber();
+        return;
+    }
+}
+
+GetFileTypeCommand::GetFileTypeCommand(const char *cmd_line) : BuiltInCommand(cmd_line),filetype(),path(),size(0) {
+
+}
+
+void GetFileTypeCommand::execute() {
+    char *cmd_args[COMMAND_MAX_ARGS];
+    int num_of_cmd_args = _parseCommandLine(this->getCmdLine(), cmd_args);
+    if(num_of_cmd_args != 2)
+    {
+        printInvalidArgs("getfiletype");
+        return;
+    }
+    struct stat buffer{};
+    if(stat(cmd_args[1],&buffer) == -1)
+    {
+        perror(SyscallErrorMessages::STAT_FAILED);
+        return;
+    }
+    filetype = getFileTypeInternal(buffer.st_mode);
+    if(filetype.empty())
+    {
+        perror(SyscallErrorMessages::STAT_FAILED);  //maybe something else?
+        return;
+    }
+    size = buffer.st_size;
+    path = std::string(cmd_args[1]);
+    printFileInfo(path,filetype,size);
+}
+
+std::string GetFileTypeCommand::getFileTypeInternal(mode_t mode) {
+    switch(mode & S_IFMT)
+    {
+        case S_IFSOCK:
+            return "socket";
+        case S_IFLNK:
+            return "symbolic link";
+        case S_IFREG:
+            return "regular file";
+        case S_IFBLK:
+            return "block device";
+        case S_IFDIR:
+            return "directory";
+        case S_IFCHR:
+            return "character device";
+        case S_IFIFO:
+            return "FIFO";
+        default:
+            return "";
+    }
+}
+
+ChmodCommand::ChmodCommand(const char *cmd_line) : BuiltInCommand(cmd_line), mode(0) {
+
+}
+
+void ChmodCommand::execute() {
+    char *cmd_args[COMMAND_MAX_ARGS];
+    int num_of_cmd_args = _parseCommandLine(this->getCmdLine(), cmd_args);
+    if(num_of_cmd_args != 3)
+    {
+        printInvalidArgs("chmod");
+        return;
+    }
+    try
+    {
+        mode = stoi(string(cmd_args[1]));
+        if (!(isValidInt(mode, cmd_args[1])))
+        {
+            printInvalidArgs("chmod");
+            return;
+        }
+    } catch (std::exception& e){
+        printInvalidArgs("chmod");
+        return;
+    }
+    mode_t parsed_mode = parseMode(mode);
+    if(chmod(cmd_args[2],parsed_mode) == -1)
+    {
+        perror(SyscallErrorMessages::CHMOD_FAILED);
+        return;
+    }
+}
+
+mode_t ChmodCommand::parseMode(int mode) {
+    mode_t result = 0;
+    result |= parseFirstDigit(mode % 10);
+    result |= parseSecondDigit((mode/10) % 10);
+    result |= parseThirdDigit((mode/100) % 10);
+    result |= parseFourthDigit((mode/1000) % 10);
+    return result;
+}
+
+mode_t ChmodCommand::parseFirstDigit(int digit) {
+    mode_t result = 0;
+    if(digit >= 4)
+    {
+        result |= S_IROTH;
+        digit -= 4;
+    }
+    if(digit >= 2)
+    {
+        result |= S_IWOTH;
+        digit -= 2;
+    }
+    if(digit >= 1)
+    {
+        result |= S_IXOTH;
+        digit -= 1;
+    }
+    return result;
+}
+
+mode_t ChmodCommand::parseSecondDigit(int digit) {
+    mode_t result = 0;
+    if(digit >= 4)
+    {
+        result |= S_IRGRP;
+        digit -= 4;
+    }
+    if(digit >= 2)
+    {
+        result |= S_IWGRP;
+        digit -= 2;
+    }
+    if(digit >= 1)
+    {
+        result |= S_IXGRP;
+        digit -= 1;
+    }
+    return result;
+}
+
+mode_t ChmodCommand::parseThirdDigit(int digit) {
+    mode_t result = 0;
+    if(digit >= 4)
+    {
+        result |= S_IRUSR;
+        digit -= 4;
+    }
+    if(digit >= 2)
+    {
+        result |= S_IWUSR;
+        digit -= 2;
+    }
+    if(digit >= 1)
+    {
+        result |= S_IXUSR;
+        digit -= 1;
+    }
+    return result;
+}
+
+mode_t ChmodCommand::parseFourthDigit(int digit) {
+    mode_t result = 0;
+    if(digit >= 4)
+    {
+        result |= S_ISUID;
+        digit -= 4;
+    }
+    if(digit >= 2)
+    {
+        result |= S_ISGID;
+        digit -= 2;
+    }
+    if(digit >= 1)
+    {
+        result |= S_ISVTX;
+        digit -= 1;
+    }
+    return result;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~ External Commands methods implementation ~~~~~~~~~~~~~~~~~~~"*/

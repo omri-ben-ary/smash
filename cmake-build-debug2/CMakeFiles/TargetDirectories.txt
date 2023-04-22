@@ -1,0 +1,3 @@
+/home/student/Desktop/smash/smash/cmake-build-debug2/CMakeFiles/HW1.dir
+/home/student/Desktop/smash/smash/cmake-build-debug2/CMakeFiles/edit_cache.dir
+/home/student/Desktop/smash/smash/cmake-build-debug2/CMakeFiles/rebuild_cache.dir
