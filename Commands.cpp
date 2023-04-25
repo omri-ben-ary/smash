@@ -322,6 +322,14 @@ const char *Command::getCmdLine() const
 bool Command::isValidInt(int int_to_check, const char *str_before_convert)
 {
     string str_to_cmp = to_string(int_to_check);
+    if(str_before_convert[0] == '0')
+    {
+        if(str_before_convert[1] == '\0')
+        {
+            return int_to_check == 0;
+        }
+        return (strcmp(str_to_cmp.c_str(), str_before_convert + 1) == 0);
+    }
     return (strcmp(str_to_cmp.c_str(), str_before_convert) == 0);
 }
 
@@ -630,12 +638,27 @@ RedirectionCommand::RedirectionCommand(const char *cmd_line) : Command(cmd_line)
         toAppend = true;
     }
     size_t separate = str_cmd_line.find('>');
-    command = str_cmd_line.substr(0, separate);
-    command = command.substr(command.find_first_not_of(' '));
-    command = command.substr(0, command.find_first_of(" \n"));
+    if(separate == 0)
+    {
+        command = "";
+    }
+    else
+    {
+        command = str_cmd_line.substr(0, separate);
+        command = command.substr(command.find_first_not_of(' '));
+        command = command.substr(0, command.find_first_of(" \n"));
+    }
     filename = str_cmd_line.substr(separate);
-    filename = filename.substr(filename.find_first_not_of(" >"));
-    filename = filename.substr(0, filename.find_first_of(" &\n"));
+    if(filename.find_first_not_of(" >") == std::string::npos)
+    {
+        filename = "";
+    }
+    else
+    {
+        filename = filename.substr(filename.find_first_not_of(" >"));
+        filename = filename.substr(0, filename.find_first_of(" &\n"));
+    }
+
 }
 
 void RedirectionCommand::execute() {
@@ -648,11 +671,11 @@ void RedirectionCommand::execute() {
     }
     if(toAppend)
     {
-        fd = open(filename.c_str(), O_RDWR | O_CREAT | O_APPEND, 0655);
+        fd = open(filename.c_str(), O_RDWR | O_CREAT | O_APPEND, 0777);
     }
     else
     {
-        fd = open(filename.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0655);
+        fd = open(filename.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0777);
     }
     if(fd == -1)
     {
@@ -699,12 +722,27 @@ PipeCommand::PipeCommand(const char *cmd_line) : Command(cmd_line), command1(), 
         toError = true;
     }
     size_t separate = str_cmd_line.find('|');
-    command1 = str_cmd_line.substr(0, separate);
-    command1 = command1.substr(command1.find_first_not_of(' '));
-    command1 = command1.substr(0, command1.find_first_of(" \n"));
+    if(separate == 0)
+    {
+        command1 = "";
+    }
+    else
+    {
+        command1 = str_cmd_line.substr(0, separate);
+        command1 = command1.substr(command1.find_first_not_of(' '));
+        //command1 = command1.substr(0, command1.find_first_of(" \n"));
+    }
     command2 = str_cmd_line.substr(separate);
-    command2 = command2.substr(command2.find_first_not_of(" |&"));
-    command2 = command2.substr(0, command2.find_first_of("&\n"));
+    if(command2.find_first_not_of(" |&") == std::string::npos)
+    {
+        command2 = "";
+    }
+    else
+    {
+        command2 = command2.substr(command2.find_first_not_of(" |&"));
+        command2 = command2.substr(0, command2.find_first_of("&\n"));
+    }
+
 }
 
 void PipeCommand::execute() {
@@ -852,8 +890,10 @@ void SetcoreCommand::execute() {
     try
     {
         job_id = stoi(string(cmd_args[1]));
-        core_num = stoi(string(cmd_args[2]));
-        if (!(isValidInt(job_id, cmd_args[1])) || !(isValidInt(core_num, cmd_args[2])))
+        std::string core_num_s = string(cmd_args[2]);
+        core_num_s = core_num_s.substr(0, core_num_s.find_first_of("&\n"));
+        core_num = stoi(core_num_s);
+        if (!(isValidInt(job_id, cmd_args[1])) || !(isValidInt(core_num, core_num_s.c_str())))
         {
             printInvalidArgs("setcore");
             return;
