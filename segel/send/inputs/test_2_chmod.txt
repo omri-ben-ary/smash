@@ -1,0 +1,23 @@
+cd /home/student/Desktop/smash/smash/segel
+ls -l | grep test_chmod
+chmod 777 test_chmod
+ls -l | grep test_chmod
+chmod 1000 test_chmod
+ls -l | grep test_chmod
+chmod 2000 test_chmod
+ls -l | grep test_chmod
+chmod 4000 test_chmod
+ls -l | grep test_chmod
+chmod 0111 test_chmod
+ls -l | grep test_chmod
+chmod 4772 test_chmod
+ls -l | grep test_chmod
+chmod 4778 test_chmod
+ls -l | grep test_chmod
+chmod -4777 test_chmod
+ls -l | grep test_chmod
+chmod 4772 hjkhjkkjh
+chmod fdssd
+chmod
+chmod 666
+quit kill

@@ -1,0 +1,7 @@
+smash error: cd: OLDPWD not set
+smash error: cd: too many arguments
+smash error: bg: job-id 4 is already running in the background
+smash error: bg: job-id 10 does not exist
+smash error: setcore: job-id 8 does not exist
+smash error: setcore: job-id 9 does not exist
+smash error: stat failed: No such file or directory

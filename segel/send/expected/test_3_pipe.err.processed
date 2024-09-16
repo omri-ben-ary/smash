@@ -1,0 +1,9 @@
+smash error: execvp failed: No such file or directory
+smash error: execvp failed: No such file or directory
+smash error: execvp failed: No such file or directory
+smash error: execvp failed: No such file or directory
+smash error: execvp failed: No such file or directory
+mkdir: missing operand
+Try 'mkdir --help' for more information.
+touch: missing file operand
+Try 'touch --help' for more information.

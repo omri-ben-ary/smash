@@ -1,0 +1,32 @@
+smash> smash> [1] sleep 5& : 2 X secs
+smash> smash> [1] sleep 5& : 2 X secs
+[2] sleep 20& : 3 X secs
+smash> smash> [1] sleep 5& : 2 X secs
+[2] sleep 20& : 3 X secs
+[3] sleep 15& : 4 X secs
+smash> sleep 15& : 4
+smash: got ctrl-Z
+smash: process 4 was stopped
+smash> [1] sleep 5& : 2 X secs
+[2] sleep 20& : 3 X secs
+[3] sleep 15& : 4 X secs (stopped)
+smash> sleep 20& : 3
+smash: got ctrl-Z
+smash: process 3 was stopped
+smash> [1] sleep 5& : 2 X secs
+[2] sleep 20& : 3 X secs (stopped)
+[3] sleep 15& : 4 X secs (stopped)
+smash> sleep 20& : 3
+smash: got ctrl-C
+smash: process 3 was killed
+smash> [1] sleep 5& : 2 X secs
+[3] sleep 15& : 4 X secs (stopped)
+smash> smash> smash> [1] sleep 5& : 2 X secs
+[3] sleep 15& : 4 X secs (stopped)
+[4] sleep 100         & : 5 X secs
+[5] sleep          100& : 6 X secs
+smash> smash: sending SIGKILL signal to 4 jobs:
+2: sleep 5&
+4: sleep 15&
+5: sleep 100         &
+6: sleep          100&

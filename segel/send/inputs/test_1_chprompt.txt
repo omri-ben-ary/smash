@@ -1,0 +1,10 @@
+chprompt gal
+chprompt tal gal
+chprompt
+chprompt gal&
+chprompt& 
+chprompt gal & 
+chprompt & 
+chprompt& tal 
+chprompt & ran 
+quit

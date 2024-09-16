@@ -1,0 +1,123 @@
+smash> dir1
+echo_stderr.sh
+empty_file.txt
+my_sleep
+print_args_test.exe
+printSignals.exe
+redirect
+tail.file
+tail_new_line.file
+tail_test.txt
+timeout
+touch.file
+smash> total 64
+drwxrwxr-x 3 student student  4096 May 13 18:33 dir1
+-rwxr-xr-x 1 student student    25 May 13 18:33 echo_stderr.sh
+-rw-r--r-- 1 student student     0 May 13 18:33 empty_file.txt
+-rwxr-xr-x 1 student student   109 May 13 18:33 my_sleep
+-rwxr-xr-x 1 student student  8360 May 13 18:33 print_args_test.exe
+-rwxr-xr-x 1 student student 18712 May 13 18:33 printSignals.exe
+drwxrwxr-x 2 student student  4096 May 13 18:33 redirect
+-rw-r--r-- 1 student student    53 May 13 18:33 tail.file
+-rw-r--r-- 1 student student    54 May 13 18:33 tail_new_line.file
+-rw-r--r-- 1 student student   190 May 13 18:33 tail_test.txt
+drwxrwxr-x 2 student student  4096 May 13 18:33 timeout
+-rw-r--r-- 1 student student     0 May 13 18:33 touch.file
+smash> total 80
+drwxrwxr-x  5 student student  4096 May 13 18:33 .
+drwxrwxrwt 18 root    root    12288 May 13 18:33 ..
+drwxrwxr-x  3 student student  4096 May 13 18:33 dir1
+-rwxr-xr-x  1 student student    25 May 13 18:33 echo_stderr.sh
+-rw-r--r--  1 student student     0 May 13 18:33 empty_file.txt
+-rwxr-xr-x  1 student student   109 May 13 18:33 my_sleep
+-rwxr-xr-x  1 student student  8360 May 13 18:33 print_args_test.exe
+-rwxr-xr-x  1 student student 18712 May 13 18:33 printSignals.exe
+drwxrwxr-x  2 student student  4096 May 13 18:33 redirect
+-rw-r--r--  1 student student    53 May 13 18:33 tail.file
+-rw-r--r--  1 student student    54 May 13 18:33 tail_new_line.file
+-rw-r--r--  1 student student   190 May 13 18:33 tail_test.txt
+drwxrwxr-x  2 student student  4096 May 13 18:33 timeout
+-rw-r--r--  1 student student     0 May 13 18:33 touch.file
+smash> smash> hello
+smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> [1] ls -l& : 2 X secs
+[2] ls -l & : 3 X secs
+[3] ls -l -a& : 4 X secs
+[4] ls -l -a & : 5 X secs
+smash> smash> [1] ls -l& : 2 X secs
+[2] ls -l & : 3 X secs
+[3] ls -l -a& : 4 X secs
+[4] ls -l -a & : 5 X secs
+[5] sleep 5& : 6 X secs
+smash> total 64
+drwxrwxr-x 3 student student  4096 May 13 18:33 dir1
+-rwxr-xr-x 1 student student    25 May 13 18:33 echo_stderr.sh
+-rw-r--r-- 1 student student     0 May 13 18:33 empty_file.txt
+-rwxr-xr-x 1 student student   109 May 13 18:33 my_sleep
+-rwxr-xr-x 1 student student  8360 May 13 18:33 print_args_test.exe
+-rwxr-xr-x 1 student student 18712 May 13 18:33 printSignals.exe
+drwxrwxr-x 2 student student  4096 May 13 18:33 redirect
+-rw-r--r-- 1 student student    53 May 13 18:33 tail.file
+-rw-r--r-- 1 student student    54 May 13 18:33 tail_new_line.file
+-rw-r--r-- 1 student student   190 May 13 18:33 tail_test.txt
+drwxrwxr-x 2 student student  4096 May 13 18:33 timeout
+-rw-r--r-- 1 student student     0 May 13 18:33 touch.file
+total 80
+drwxrwxr-x  5 student student  4096 May 13 18:33 .
+drwxrwxrwt 18 root    root    12288 May 13 18:33 ..
+drwxrwxr-x  3 student student  4096 May 13 18:33 dir1
+-rwxr-xr-x  1 student student    25 May 13 18:33 echo_stderr.sh
+-rw-r--r--  1 student student     0 May 13 18:33 empty_file.txt
+-rwxr-xr-x  1 student student   109 May 13 18:33 my_sleep
+-rwxr-xr-x  1 student student  8360 May 13 18:33 print_args_test.exe
+-rwxr-xr-x  1 student student 18712 May 13 18:33 printSignals.exe
+drwxrwxr-x  2 student student  4096 May 13 18:33 redirect
+-rw-r--r--  1 student student    53 May 13 18:33 tail.file
+-rw-r--r--  1 student student    54 May 13 18:33 tail_new_line.file
+-rw-r--r--  1 student student   190 May 13 18:33 tail_test.txt
+drwxrwxr-x  2 student student  4096 May 13 18:33 timeout
+-rw-r--r--  1 student student     0 May 13 18:33 touch.file
+total 80
+drwxrwxr-x  5 student student  4096 May 13 18:33 .
+drwxrwxrwt 18 root    root    12288 May 13 18:33 ..
+drwxrwxr-x  3 student student  4096 May 13 18:33 dir1
+-rwxr-xr-x  1 student student    25 May 13 18:33 echo_stderr.sh
+-rw-r--r--  1 student student     0 May 13 18:33 empty_file.txt
+-rwxr-xr-x  1 student student   109 May 13 18:33 my_sleep
+-rwxr-xr-x  1 student student  8360 May 13 18:33 print_args_test.exe
+-rwxr-xr-x  1 student student 18712 May 13 18:33 printSignals.exe
+drwxrwxr-x  2 student student  4096 May 13 18:33 redirect
+-rw-r--r--  1 student student    53 May 13 18:33 tail.file
+-rw-r--r--  1 student student    54 May 13 18:33 tail_new_line.file
+-rw-r--r--  1 student student   190 May 13 18:33 tail_test.txt
+drwxrwxr-x  2 student student  4096 May 13 18:33 timeout
+-rw-r--r--  1 student student     0 May 13 18:33 touch.file
+total 64
+drwxrwxr-x 3 student student  4096 May 13 18:33 dir1
+-rwxr-xr-x 1 student student    25 May 13 18:33 echo_stderr.sh
+-rw-r--r-- 1 student student     0 May 13 18:33 empty_file.txt
+-rwxr-xr-x 1 student student   109 May 13 18:33 my_sleep
+-rwxr-xr-x 1 student student  8360 May 13 18:33 print_args_test.exe
+-rwxr-xr-x 1 student student 18712 May 13 18:33 printSignals.exe
+drwxrwxr-x 2 student student  4096 May 13 18:33 redirect
+-rw-r--r-- 1 student student    53 May 13 18:33 tail.file
+-rw-r--r-- 1 student student    54 May 13 18:33 tail_new_line.file
+-rw-r--r-- 1 student student   190 May 13 18:33 tail_test.txt
+drwxrwxr-x 2 student student  4096 May 13 18:33 timeout
+-rw-r--r-- 1 student student     0 May 13 18:33 touch.file
+
+smash> smash> smash> smash> smash> smash> smash> smash> smash> [5] sleep 5& : 6 X secs
+[6] mkdir ga?l.bla& : 7 X secs
+[7] mkdir ta?l.bla & : 8 X secs
+[8] rm -d *.bla& : 9 X secs
+[9] mkdir ga?l.bla & : 10 X secs
+[10] rm -d *.bla & : 11 X secs
+[11] mkdir gal.bla & : 12 X secs
+[12] rm -d g?l.bla & : 13 X secs
+smash> 
+smash> smash> smash: sending SIGKILL signal to 6 jobs:
+6: sleep 5&
+9: rm -d *.bla&
+10: mkdir ga?l.bla &
+11: rm -d *.bla &
+12: mkdir gal.bla &
+13: rm -d g?l.bla &

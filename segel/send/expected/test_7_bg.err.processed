@@ -1,0 +1,13 @@
+smash error: bg: there is no stopped jobs to resume
+smash error: bg: job-id 1 does not exist
+smash error: bg: job-id 1 does not exist
+smash error: bg: job-id 1 does not exist
+smash error: bg: invalid arguments
+smash error: bg: job-id -1 does not exist
+smash error: bg: there is no stopped jobs to resume
+smash error: bg: job-id 1 is already running in the background
+smash error: bg: there is no stopped jobs to resume
+smash error: bg: job-id 1 is already running in the background
+smash error: bg: there is no stopped jobs to resume
+smash error: bg: invalid arguments
+smash error: bg: job-id 2 is already running in the background

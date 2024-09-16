@@ -1,0 +1,38 @@
+bg 
+bg 1 
+bg 1 3 
+bg 1 a 
+bg & 1 
+bg -1 
+sleep 100&
+bg 
+
+bg 1 
+fg
+^Z 
+bg
+bg 
+
+bg 1 
+sleep 200&
+bg 
+bg a 
+
+fg
+^Z 
+bg& 
+fg
+^Z
+
+bg & 
+bg 2 gal 
+jobs
+fg 2& 
+^Z
+bg 2& 
+fg 2 & 
+^Z
+bg 2 & 
+quit kill
+
+

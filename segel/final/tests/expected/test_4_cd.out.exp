@@ -1,0 +1,19 @@
+smash> /tmp/smash_test
+smash> smash> /tmp/smash_test
+smash> smash> /tmp/smash_test
+smash> smash> /tmp/smash_test
+smash> smash> /tmp
+smash> smash> /tmp/smash_test
+smash> smash> /tmp
+smash> smash> /tmp
+smash> smash> /tmp
+smash> smash> /home/student
+smash> smash> /home/student
+smash> smash> /home/student
+smash> smash> /home/student
+smash> smash> /home/student
+smash> smash> /home
+smash> smash> /
+smash> smash> /home
+smash> smash> /
+smash> smash> smash: sending SIGKILL signal to 0 jobs:

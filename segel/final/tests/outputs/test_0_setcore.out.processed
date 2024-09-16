@@ -1,0 +1,19 @@
+smash> smash> smash> smash>  2   1 /home/student/Desktop/smash/smash/segel/a.out
+ 3   1 /home/student/Desktop/smash/smash/segel/a.out
+ 4   0 /home/student/Desktop/smash/smash/segel/a.out
+smash> smash> smash> smash>  2   0 /home/student/Desktop/smash/smash/segel/a.out
+ 3   0 /home/student/Desktop/smash/smash/segel/a.out
+ 4   0 /home/student/Desktop/smash/smash/segel/a.out
+smash> smash> smash> smash>  2   1 /home/student/Desktop/smash/smash/segel/a.out
+ 3   1 /home/student/Desktop/smash/smash/segel/a.out
+ 4   1 /home/student/Desktop/smash/smash/segel/a.out
+smash> smash> smash> smash>  2   1 /home/student/Desktop/smash/smash/segel/a.out
+ 3   0 /home/student/Desktop/smash/smash/segel/a.out
+ 4   1 /home/student/Desktop/smash/smash/segel/a.out
+smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> smash>  2   1 /home/student/Desktop/smash/smash/segel/a.out
+ 3   0 /home/student/Desktop/smash/smash/segel/a.out
+ 4   1 /home/student/Desktop/smash/smash/segel/a.out
+smash> smash: sending SIGKILL signal to 3 jobs:
+2: /home/student/Desktop/smash/smash/segel/a.out&
+3: /home/student/Desktop/smash/smash/segel/a.out&
+4: /home/student/Desktop/smash/smash/segel/a.out&

@@ -1,0 +1,19 @@
+sleep 5&
+jobs
+sleep 20&
+jobs&
+sleep 15&
+jobs &
+fg 
+^Z
+jobs
+fg 2
+^Z 
+jobs
+fg 2
+^C
+jobs
+sleep 100         &
+sleep          100&
+jobs blabla
+quit kill

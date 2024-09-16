@@ -1,0 +1,9 @@
+pwd 
+pwd& 
+pwd & 
+pwd gal 
+pwd gal& 
+pwd gal & 
+pwd & gal
+pwd& gal 
+quit kill

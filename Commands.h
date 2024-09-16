@@ -6,18 +6,53 @@
 #define COMMAND_ARGS_MAX_LENGTH (200)
 #define COMMAND_MAX_ARGS (20)
 
+namespace GeneralStatements
+{
+    void printGeneralErrorToCERR(const std::string &command_line);
+    void printTooManyArguments(const std::string &command_name);
+    void printOldPwdNotSet(const std::string &command_name);
+    void printSendingSigKill(unsigned long num);
+    void printKillJobMessage(pid_t pid, const std::string &command_name);
+    void printInvalidArgs(const std::string &command_name);
+    void printJobNotExist(const std::string& command_name, int job_id);
+    void printSignalSend(int sig_num, int job_pid);
+    void printSmashPID(pid_t pid);
+    void printJobForJobsCMD(int job_id, const std::string& cmd_line, pid_t pid, double seconds, const std::string& stopped_print);
+    void printEmptyJobsList(const std::string& command_name);
+    void printJobDetails(pid_t pid, const std::string& command_line);
+    void printCurrentDir(const std::string& current_dir);
+    void printJobAlreadyRunning(int job_id);
+    void printNoJobsToResume(const std::string& command_name);
+    void printGotCtrlC();
+    void printGotCtrlZ();
+    void printGotAlarm();
+    void printProcessWasKilled(pid_t pid);
+    void printProcessWasStopped(pid_t pid);
+    void printTimedOut(const std::string& command_name);
+    void printInvalidCoreNumber();
+    void printFileInfo(const std::string& path, const std::string& filetype, long size);
+}
+
 class Command{
-// TODO: Add your data members
-    const char* cmd_line;
+    std::string cmd_line;
+    bool is_timeout;
+    int timeout_duration;
+    std::string full_cmd_line;
+    bool is_quit;
 public:
     explicit Command(const char* cmd_line); //maybe we should change to std::string
     virtual ~Command();
     virtual void execute() = 0;
-    //virtual void prepare();
-    //virtual void cleanup();
-    // TODO: Add your extra methods if needed
-    const char* getCmdLine() const;
+    std::string getCmdLine() const;
+    void setTimeout();
+    bool isTimeout();
+    void setTimeoutDuration(int seconds);
+    int getTimeoutDuration();
+    void setFullPath(const std::string& full_path);
+    std::string getFullPath();
     static bool isValidInt(int int_to_check, const char* str_before_convert);
+    void setIsQuit() {is_quit = true;};
+    bool getIsQuit() {return is_quit;};
 };
 
 class BuiltInCommand : public Command {
@@ -112,6 +147,41 @@ public:
     void execute() override;
 };
 
+class TimeoutJobEntry
+{
+private:
+    const pid_t job_pid;
+    int timeout_duration;
+    std::string cmd_line;
+    time_t job_time;
+public:
+    TimeoutJobEntry(int process_pid, int duration, std::string command);
+    ~TimeoutJobEntry() = default;
+    void restartJobTime();
+    pid_t getJobPID() const;
+    std::string getJobCMD();
+    time_t getJobStartTime();
+    int getSecondsUntilTimeout() const;
+    bool is_job_timed_out() const;
+};
+
+class TimeoutJobsList
+{
+private:
+    std::vector<TimeoutJobEntry *> timeout_jobs_vector;
+public:
+    TimeoutJobsList();
+    ~TimeoutJobsList() = default;
+    void addJob(int pid, int duration, std::string cmd_line);
+    void removeTimedOutJobs();
+    static bool isJobTimedOut(TimeoutJobEntry* job);
+    static bool killTimedOutJob(pid_t pid);
+    void sortTimeOutVector();
+    int getTimeLeftToClosestAlarm();
+    bool isEmptyList();
+    void cleanTimeOutedJobsVector();
+};
+
 class JobEntry
 {
 private:
@@ -128,6 +198,8 @@ public:
     std::string getJobCMD();
     bool isJobStopped() const;
     time_t getJobTime() const;
+    void restartJobTime();
+    void stopJob();
     void moveJobToBG();
     void killJob();
     void sendSignal(int sig_num, bool to_print) const;
@@ -147,9 +219,11 @@ public:
     void killAllJobs();
     void removeFinishedJobs();
     bool isJobExist(int jobId);
+    bool isJobExistByPID(pid_t pid);
     static bool isJobFinished(JobEntry* job);
     JobEntry* getJobById(int jobId); //returns nullptr if job not found
-    void removeFromListJobById(int jobId); //
+    JobEntry* getJobByPid(pid_t pid); //returns nullptr if job not found
+    void removeFromListJobByPid(pid_t pid); //
     JobEntry* getLastJob(); // returns getJobById(this->max_job_id).
     // might be faster to call the last element in the vector if
     JobEntry* getLastStoppedJob(); // returns getJobById(this->max_stopped_job_id).
@@ -160,12 +234,7 @@ public:
     void setMaxStoppedJobID(int job_id);
     void updateMaxJobID();// updates this->max_job_id to be the id of the last element in the vector? (vector.back())
     void updateMaxStoppedJobID(); // updates this->max_job_id by reverse iterator who stops at first job with is_Stopped = true
-
-// is the max_job_id equals to the vector size - if vector deletes element so no
-// we have to notice that the job with the max id is always the last job in the vector
-// fastest way to update maxStoppedJobID is by holding pointers between the stopped jobs.
-// however it creates another problem: when we stop bg process (dont sure that it is even possible)
-// we don't change the job place in the vector and we have to waste time searching for the next and previous stopped jobs
+    void cleanJobsVector();
 };
 
 class JobsCommand : public BuiltInCommand
@@ -197,8 +266,6 @@ public:
 };
 
 class TimeoutCommand : public BuiltInCommand {
-/* Bonus */
-// TODO: Add your data members
 public:
     explicit TimeoutCommand(const char* cmd_line);
     virtual ~TimeoutCommand() {}
@@ -207,11 +274,6 @@ public:
 
 class ChmodCommand : public BuiltInCommand {
     int mode;
-    mode_t parseMode(int mode);
-    mode_t parseFirstDigit(int digit);
-    mode_t parseSecondDigit(int digit);
-    mode_t parseThirdDigit(int digit);
-    mode_t parseFourthDigit(int digit);
 public:
     explicit ChmodCommand(const char* cmd_line);
     virtual ~ChmodCommand() {}
@@ -261,6 +323,7 @@ private:
     bool is_shell_in_fg;
     JobsList* jobs_list;
     ForegroundProcess* fg_process;
+    TimeoutJobsList* timeout_jobs_list;
 
 public:
     Command *CreateCommand(const char* cmd_line);
@@ -294,6 +357,12 @@ public:
     bool isShellInFG() const;
     void updateJobList();
     pid_t getJobPid(int job_id) const;
+    TimeoutJobsList* getTimeoutJobsListPtr();
+    void sortTimeOutVector();
+    int getTimeLeftToClosestAlarm();
+    void setNextAlarm();
+    void cleanJobsVector();
+    void cleanTimeOutedJobsVector();
 };
 
 #endif //HW1WET_COMMAND_H_

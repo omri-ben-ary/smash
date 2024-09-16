@@ -1,0 +1,25 @@
+cd /home/student/Desktop/smash/smash/segel
+pwd
+chprompt omri > a.txt&
+cat a.txt
+chprompt
+showpid >> a.txt    &
+cat a.txt
+pwd >> a.txt
+cat a.txt
+cd ../ > a.txt &
+pwd
+cd ./segel
+cat a.txt
+jobs >> a.txt
+cat a.txt
+sleep 100&
+jobs >> a.txt
+cat a.txt
+kill -9 1 > a.txt
+cat a.txt
+bla > b.txt
+bla >> b.txt
+> c.txt
+sleep 200&
+quit kill > a.txt

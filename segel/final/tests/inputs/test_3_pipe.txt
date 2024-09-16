@@ -1,0 +1,63 @@
+cd /home/student/Desktop/smash/smash/segel
+pwd
+jobs
+chprompt omri | showpid&
+chprompt gal | pwd
+chprompt | cd ../
+pwd
+sleep 100&
+chprompt omri | jobs
+chprompt gal | cat ./segel/filepath.txt
+showpid |& showpid
+showpid | pwd&
+showpid | echo aaaa   &
+pwd | pwd
+pwd | chprompt
+pwd | cd ./segel
+pwd
+cd ../ |& pwd
+jobs |& cat
+kill -9 1 | echo
+jobs
+echo ./segel | cd
+pwd
+cd ./segel
+cat filepath.txt | cd
+pwd
+cd ./tests
+bla | bla
+bla | pwd
+pwd | bla
+echo a 
+pwd |& bla
+echo b 
+| pwd
+echo c 
+showpid |&
+echo gal_shore | mkdir
+ls | grep gal_shore 
+bg 5 |& touch
+
+mkdir gal_shore
+ls -l |grep gal_shore
+rm -d gal_shore
+mkdir tal_shore
+ls -l &|grep tal_shore
+rm -d tal_shore
+mkdir tal_shore
+ls -l&|grep tal_shore
+rm -d tal_shore
+mkdir val_shore
+ls -l |grep val_shore &
+rm -d val_shore
+mkdir val_shore
+ls -l |grep val_shore&
+rm -d val_shore
+pwd | cat
+showpid & | cat
+showpid& | cat
+sleep 50&
+jobs | cat&
+jobs | cat &
+sleep 100& |& quit kill
+

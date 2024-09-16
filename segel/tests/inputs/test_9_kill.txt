@@ -1,0 +1,29 @@
+sleep 100&
+kill -9 1 
+ls
+jobs
+sleep 200& 
+fg 
+^Z
+jobs
+kill -18 1
+jobs
+sleep 300&
+jobs
+kill -19 2 
+jobs
+kill -9 3 
+kill 9 3 
+kill a 3
+kill -9 3 5
+kill -9 2 5
+kill 9 2 
+kill -9.0 2 
+kill -9 2.0 
+kill -90 2 
+jobs
+kill -9 1 & 
+jobs
+kill -9 2&  
+jobs
+quit kill

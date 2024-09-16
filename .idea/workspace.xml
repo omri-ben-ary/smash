@@ -23,11 +23,36 @@
   <component name="ChangeListManager">
     <list default="true" id="bdd3bec9-c3ad-42bf-a969-d615d218d6fd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Commands.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Commands.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Commands.h" beforeDir="false" afterPath="$PROJECT_DIR$/Commands.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-48f1a0ff5b935fe1ace7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-42dee777662b446b4d13.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-04-22T15-40-30-0790.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-HW1-Debug-8d458a864f5a5a0ac566.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/.cmake/api/v1/reply/cmakeFiles-v1-2723b747f37a242884dc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/.cmake/api/v1/reply/codemodel-v2-39833fb881626c2d1e78.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/.cmake/api/v1/reply/index-2023-04-22T15-40-30-0804.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/.cmake/api/v1/reply/target-HW1-Debug-8d458a864f5a5a0ac566.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug2/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug2/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug2/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug2/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/CMakeFiles/clion-Debug2-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug2/CMakeFiles/clion-Debug2-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug2/HW1" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug2/HW1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug2/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug2/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug2/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/cat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/t" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/w" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/z" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug2/zz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/printStatements.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/printStatements.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/signals.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/signals.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smash.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/smash.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +70,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -65,7 +90,7 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "/home/student/Desktop/shafran smash/Commands.cpp",
+    "last_opened_file_path": "/home/student/Desktop/smash/smash/segel",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -76,11 +101,6 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="HW1" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HW1" TARGET_NAME="HW1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HW1" RUN_TARGET_NAME="HW1">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -100,7 +120,10 @@
       <workItem from="1681743671739" duration="7760000" />
       <workItem from="1681900939791" duration="20800000" />
       <workItem from="1682019643796" duration="69000" />
-      <workItem from="1682020160448" duration="36658000" />
+      <workItem from="1682020160448" duration="62688000" />
+      <workItem from="1683580148539" duration="9764000" />
+      <workItem from="1683759179153" duration="1265000" />
+      <workItem from="1683826650035" duration="181000" />
     </task>
     <servers />
   </component>
@@ -150,61 +173,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>692</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>671</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>824</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>904</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>853</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>979</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>324</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>892</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>639</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Commands.cpp</url>
-          <line>750</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

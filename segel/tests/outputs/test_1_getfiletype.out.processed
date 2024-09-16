@@ -1,0 +1,9 @@
+smash> /home/student/Desktop/smash/smash/segel/bamba's type is "FIFO" and takes up 0 bytes
+smash> /dev/sda1's type is "block device" and takes up 0 bytes
+smash> /dev/tty0's type is "character device" and takes up 0 bytes
+smash> /home/student/Desktop/smash/smash/segel/a.out's type is "regular file" and takes up 8168 bytes
+smash> /home/student/Desktop/smash/smash/segel/test's type is "symbolic link" and takes up 26 bytes
+smash> /run/systemd/journal/stdout's type is "socket" and takes up 0 bytes
+smash> ../'s type is "directory" and takes up 12288 bytes
+smash> /tmp/smash_test's type is "directory" and takes up 4096 bytes
+smash> smash> smash> smash> smash: sending SIGKILL signal to 0 jobs:

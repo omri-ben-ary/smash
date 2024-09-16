@@ -1,0 +1,38 @@
+cd /home/student/Desktop/smash/smash/segel
+pwd
+jobs
+chprompt omri | showpid&
+chprompt gal | pwd
+chprompt | cd ../
+pwd
+sleep 100&
+chprompt omri | jobs
+chprompt gal | cat ./segel/filepath.txt
+showpid |& showpid
+showpid | pwd&
+showpid | echo aaaa   &
+pwd | pwd
+pwd | chprompt
+chprompt
+pwd | cd ./segel
+cd ./segel
+pwd | getfiletype
+cd ../ |& pwd
+jobs |& cat
+kill -9 1 | echo
+jobs
+echo ./segel | cd
+pwd
+cat filepath.txt | cd
+pwd
+bla | bla
+bla | pwd
+pwd | bla
+echo a 
+pwd |& bla
+echo b 
+| pwd
+echo c 
+showpid |&
+sleep 100& |& quit kill
+

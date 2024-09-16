@@ -1,0 +1,10 @@
+showpid 
+showpid&
+showpid &
+showpid gal 
+showpid gal&
+showpid gal & 
+showpid& gal
+showpid & gal 
+quit kill
+

@@ -1,0 +1,35 @@
+/home/student/Desktop/smash/smash/segel/a.out&
+/home/student/Desktop/smash/smash/segel/a.out&
+/home/student/Desktop/smash/smash/segel/a.out&
+ps -o pid,psr,command | grep a.out
+setcore 1 0
+setcore 2 0
+setcore 3 0
+ps -o pid,psr,command | grep a.out
+setcore 1 1&
+setcore 2 1 &
+setcore 3 1      &
+ps -o pid,psr,command | grep a.out
+setcore 1 1
+setcore 2 0
+setcore 3 1
+ps -o pid,psr,command | grep a.out
+setcore 1.0 1&
+setcore 1 1.0
+setcore 1.0 1.0
+setcore 25 1
+setcore 1 25&
+setcore 1 -5
+setcore 25 25
+setcore 25.0 1
+setcore 1 25.7
+setcore 24.3 22.7 &
+setcore 1.0 32
+setcore 23 1.0
+setcore 2
+setcore 34
+setcore 1 25 7&
+setcore 1 1 1&
+setcore
+ps -o pid,psr,command | grep a.out
+quit kill

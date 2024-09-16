@@ -1,0 +1,7 @@
+cd /home/student/Desktop/smash/smash/segel/
+bla&
+ls&
+ls&
+jobs
+sleep 1 
+quit kill

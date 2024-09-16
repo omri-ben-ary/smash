@@ -1,0 +1,130 @@
+sleep 2&
+kill -1 1
+jobs
+kill -9 1
+sleep 2&
+kill -2 1
+jobs
+kill -9 1
+sleep 2&
+kill -2 1
+jobs
+kill -9 1
+sleep 2&
+kill -3 1
+jobs
+kill -9 1
+sleep 2&
+kill -4 1
+jobs
+kill -9 1
+sleep 2&
+kill -5 1
+jobs
+kill -9 1
+sleep 2&
+kill -6 1
+jobs
+kill -9 1
+sleep 2&
+kill -7 1
+jobs
+kill -9 1
+sleep 2&
+kill -8 1
+jobs
+kill -9 1
+sleep 2&
+kill -9 1
+jobs
+kill -9 1
+sleep 2&
+kill -10 1
+jobs
+kill -9 1
+sleep 2&
+kill -11 1
+jobs
+kill -9 1
+sleep 2&
+kill -12 1
+jobs
+kill -9 1
+sleep 2&
+kill -13 1
+jobs
+kill -9 1
+sleep 2&
+kill -14 1
+jobs
+kill -9 1
+sleep 2&
+kill -15 1
+jobs
+kill -9 1
+sleep 2&
+kill -16 1
+jobs
+kill -9 1
+sleep 2&
+kill -17 1
+jobs
+kill -9 1
+sleep 2&
+kill -18 1
+jobs
+kill -9 1
+sleep 2&
+kill -19 1
+jobs
+kill -9 1
+sleep 2&
+kill -20 1
+jobs
+kill -9 1
+sleep 2&
+kill -21 1
+jobs
+kill -9 1
+sleep 2&
+kill -22 1
+jobs
+kill -9 1
+sleep 2&
+kill -23 1
+jobs
+kill -9 1
+sleep 2&
+kill -24 1
+jobs
+kill -9 1
+sleep 2&
+kill -25 1
+jobs
+kill -9 1
+sleep 2&
+kill -26 1
+jobs
+kill -9 1
+sleep 2&
+kill -27 1
+jobs
+kill -9 1
+sleep 2&
+kill -28 1
+jobs
+kill -9 1
+sleep 2&
+kill -29 1
+jobs
+kill -9 1
+sleep 2&
+kill -30 1
+jobs
+kill -9 1
+sleep 2&
+kill -31 1
+jobs
+kill -9 1
+sleep 2&
+

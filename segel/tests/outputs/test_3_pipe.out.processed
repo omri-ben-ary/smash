@@ -1,0 +1,36 @@
+smash> smash> /home/student/Desktop/smash/smash/segel
+smash> smash> smash pid is 1
+omri> /home/student/Desktop/smash/smash/segel
+gal> smash> /home/student/Desktop/smash/smash
+smash> smash> [1] sleep 100& : 2 X secs
+omri> /home/student/Desktop/smash/smash/segel/testsgal> smash pid is 1
+smash pid is 1
+gal> /home/student/Desktop/smash/smash
+gal> aaaa
+gal> /home/student/Desktop/smash/smash
+gal> smash> smash> /home/student/Desktop/smash/smash/segel
+smash> /home/student/Desktop/smash/smash
+smash> [1] sleep 100& : 2 X secs
+smash> 
+smash> smash> smash> /home/student/Desktop/smash/smash
+smash> smash> smash> /home/student/Desktop/smash/smash/segel
+smash> smash> smash> /home/student/Desktop/smash/smash/segel/tests
+smash> smash> a
+smash> /home/student/Desktop/smash/smash/segel/tests
+smash> b
+smash> /home/student/Desktop/smash/smash/segel/tests
+smash> c
+smash> smash pid is 1
+smash> smash> smash> smash> smash> smash> drwxrwxr-x 2 student student 4096 May 13 18:33 gal_shore
+smash> smash> smash> drwxrwxr-x 2 student student 4096 May 13 18:33 tal_shore
+smash> smash> smash> drwxrwxr-x 2 student student 4096 May 13 18:33 tal_shore
+smash> smash> smash> drwxrwxr-x 2 student student 4096 May 13 18:33 val_shore
+smash> smash> smash> drwxrwxr-x 2 student student 4096 May 13 18:33 val_shore
+smash> smash> /home/student/Desktop/smash/smash/segel/tests
+smash> smash pid is 1
+smash> smash pid is 1
+smash> smash> [1] sleep 50& : 3 X secs
+smash> [1] sleep 50& : 3 X secs
+smash> smash: sending SIGKILL signal to 2 jobs:
+3: sleep 50&
+4: sleep 100& 

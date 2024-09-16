@@ -1,0 +1,16 @@
+sleep 5&
+jobs
+^C
+fg
+^C
+jobs
+^Z
+sleep 10&
+jobs
+^Z
+jobs
+fg 
+^C
+sleep 10
+^C
+quit kill

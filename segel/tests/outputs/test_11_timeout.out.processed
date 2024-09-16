@@ -1,0 +1,24 @@
+smash> smash> smash: got an alarm
+smash> smash: got an alarm
+smash: timeout 1 sleep 2 timed out!
+smash> smash: got an alarm
+smash: timeout 2 sleep 2 timed out!
+smash> smash> [1] timeout 2 sleep 3& : 2 X secs
+smash> smash> smash> smash> [1] timeout 2 sleep 3& : 2 X secs
+[2] timeout 2 sleep 5& : 3 X secs
+[3] timeout 2 sleep 5& : 4 X secs
+[4] timeout 2 sleep 5    & : 5 X secs
+smash> timeout 2 sleep 5    & : 5
+smash: got an alarm
+smash: timeout 2 sleep 3& timed out!
+smash: timeout 2 sleep 5& timed out!
+smash: timeout 2 sleep 5& timed out!
+smash: timeout 2 sleep 5    & timed out!
+smash> smash> timeout 2 sleep 5& : 6
+smash: got an alarm
+smash: timeout 2 sleep 5& timed out!
+smash> smash> smash> smash> smash: got an alarm
+smash: timeout 1 sleep 2        &  timed out!
+smash: got an alarm
+smash> 
+smash> smash: sending SIGKILL signal to 0 jobs:

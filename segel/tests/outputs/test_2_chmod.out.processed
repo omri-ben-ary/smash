@@ -1,0 +1,10 @@
+smash> smash> ---S------ 1 student student      0 May 11 19:09 test_chmod
+smash> smash> -rwxrwxrwx 1 student student      0 May 11 19:09 test_chmod
+smash> smash> ---------T 1 student student      0 May 11 19:09 test_chmod
+smash> smash> ------S--- 1 student student      0 May 11 19:09 test_chmod
+smash> smash> ---S------ 1 student student      0 May 11 19:09 test_chmod
+smash> smash> ---x--x--x 1 student student      0 May 11 19:09 test_chmod
+smash> smash> -rwsrwx-w- 1 student student      0 May 11 19:09 test_chmod
+smash> smash> -rwsrwx-w- 1 student student      0 May 11 19:09 test_chmod
+smash> smash> -rwsrwx-w- 1 student student      0 May 11 19:09 test_chmod
+smash> smash> smash> smash> smash> smash: sending SIGKILL signal to 0 jobs:

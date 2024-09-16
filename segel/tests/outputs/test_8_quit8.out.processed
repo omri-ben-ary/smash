@@ -1,0 +1,4 @@
+smash> smash> smash> smash> smash: sending SIGKILL signal to 3 jobs:
+2: sleep 100&
+3: sleep 200 &
+4: sleep             300&

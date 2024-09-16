@@ -1,0 +1,37 @@
+smash> smash> signal number 9 was sent to pid 2
+smash> dir1
+echo_stderr.sh
+empty_file.txt
+ga?l.bla
+my_sleep
+print_args_test.exe
+printSignals.exe
+redirect
+tail.file
+tail_new_line.file
+tail_test.txt
+ta?l.bla
+timeout
+touch.file
+smash> smash> smash> sleep 200&  : 3
+smash: got ctrl-Z
+smash: process 3 was stopped
+smash> [1] sleep 200&  : 3 X secs (stopped)
+smash> signal number 18 was sent to pid 3
+smash> [1] sleep 200&  : 3 X secs
+smash> smash> [1] sleep 200&  : 3 X secs
+[2] sleep 300& : 4 X secs
+smash> signal number 19 was sent to pid 4
+smash> [1] sleep 200&  : 3 X secs
+[2] sleep 300& : 4 X secs (stopped)
+smash> smash> smash> smash> smash> smash> smash> smash> smash> smash> [1] sleep 200&  : 3 X secs
+[2] sleep 300& : 4 X secs (stopped)
+smash> signal number 9 was sent to pid 3
+smash> [1] sleep 200&  : 3 X secs
+[2] sleep 300& : 4 X secs (stopped)
+smash> signal number 9 was sent to pid 4
+smash> [1] sleep 200&  : 3 X secs
+[2] sleep 300& : 4 X secs (stopped)
+smash> smash: sending SIGKILL signal to 2 jobs:
+3: sleep 200& 
+4: sleep 300&

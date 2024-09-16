@@ -1,0 +1,133 @@
+smash> Jeffry_Epstein_didn’t_kill_himself> smash> smash pid is 1
+smash> /tmp/smash_test
+smash> smash> smash> smash> /home/student
+smash> smash> /home
+smash> smash> /home/student
+smash> smash> smash: got ctrl-Z
+smash: process 2 was stopped
+smash> [1] sleep 100& : 3 X secs
+[2]  sleep 200 : 2 X secs (stopped)
+smash> smash> smash> smash> smash> smash> [1] sleep 100& : 3 X secs
+[2]  sleep 200 : 2 X secs (stopped)
+[3] sleep 100& : 4 X secs
+[4] sleep 200& : 5 X secs
+[5] sleep 300& : 6 X secs
+[6]  sleep 400& : 7 X secs
+[7] sleep 500& : 8 X secs
+smash> sleep 300& : 6
+smash: got ctrl-C
+smash: process 6 was killed
+smash> smash> signal number 9 was sent to pid 3
+smash> smash> smash pid is 1
+smash> smash> smash pid is 1
+smash pid is 1
+smash> my_name_is_gal
+smash> [2]  sleep 200 : 2 X secs (stopped)
+[3] sleep 100& : 4 X secs
+[4] sleep 200& : 5 X secs
+[6]  sleep 400& : 7 X secs
+[7] sleep 500& : 8 X secs
+smash> smash> smash> total 40
+drwxrwxr-x 2 student student 4096 Mar 31  2020 atamos_vm
+drwxrwxr-x 6 student student 4096 May  5 10:59 Desktop
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Documents
+drwxr-xr-x 3 student student 4096 May  9 17:43 Downloads
+-rw-r-xr-x 1 student student    0 May  9 19:01 ls.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Music
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Pictures
+-rw-r-xr-x 1 student student   38 May  9 19:01 pid.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Public
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Templates
+-rwxrw-rw- 1 student student    0 May  9 18:48 test.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Videos
+smash> smash pid is 1
+smash pid is 1
+smash> smash pid is 1
+smash> smash> smash> [2]  sleep 200 : 2 X secs (stopped)
+[3] sleep 100& : 4 X secs
+[4] sleep 200& : 5 X secs
+[6]  sleep 400& : 7 X secs
+[7] sleep 500& : 8 X secs
+[8] ./a.out & : 9 X secs
+[9] ./a.out & : 10 X secs
+smash> smash> smash>    PID PSR COMMAND
+  3400   1 bash
+ 15305   0 ./a.out
+ 18785   0 sleep 1500
+ 20230   0 sleep 1000
+ 20231   0 sleep 1500
+ 23003   0 sleep 1000
+ 23004   0 sleep 1500
+ 25461   1 /bin/bash ./tests/runner/runner.sh test_gal
+ 25477   1 /home/student/Desktop/smash/smash/cmake-build-debug2/tests/runner/runner /home/student/Desktop/smash/smash/cmake-build-debug2/smash
+ 1   0 /home/student/Desktop/smash/smash/cmake-build-debug2/smash
+ 2   1 sleep 200
+ 4   1 sleep 100
+ 5   1 sleep 200
+ 7   0 sleep 400
+ 8   0 sleep 500
+ 25524   0 sleep 0.1
+ 9   0 [smash] <defunct>
+ 10   1 [smash] <defunct>
+ 25532   1 ps -o pid,psr,command
+smash> smash> smash> total 44
+drwxrwxr-x 2 student student 4096 Mar 31  2020 atamos_vm
+drwxrwxr-x 6 student student 4096 May  5 10:59 Desktop
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Documents
+drwxr-xr-x 3 student student 4096 May  9 17:43 Downloads
+-rw-r-xr-x 1 student student  674 May  9 19:01 ls.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Music
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Pictures
+-rw-r-xr-x 1 student student   38 May  9 19:01 pid.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Public
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Templates
+-rwxrw-rw- 1 student student    0 May  9 19:01 test.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Videos
+smash> smash> total 44
+drwxrwxr-x 2 student student 4096 Mar 31  2020 atamos_vm
+drwxrwxr-x 6 student student 4096 May  5 10:59 Desktop
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Documents
+drwxr-xr-x 3 student student 4096 May  9 17:43 Downloads
+-rw-r-xr-x 1 student student  674 May  9 19:01 ls.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Music
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Pictures
+-rw-r-xr-x 1 student student   38 May  9 19:01 pid.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Public
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Templates
+-r--r--r-- 1 student student    0 May  9 19:01 test.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Videos
+smash> smash> total 44
+drwxrwxr-x 2 student student 4096 Mar 31  2020 atamos_vm
+drwxrwxr-x 6 student student 4096 May  5 10:59 Desktop
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Documents
+drwxr-xr-x 3 student student 4096 May  9 17:43 Downloads
+-rw-r-xr-x 1 student student  674 May  9 19:01 ls.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Music
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Pictures
+-rw-r-xr-x 1 student student   38 May  9 19:01 pid.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Public
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Templates
+-rw-rw-rw- 1 student student    0 May  9 19:01 test.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Videos
+smash> smash> total 44
+drwxrwxr-x 2 student student 4096 Mar 31  2020 atamos_vm
+drwxrwxr-x 6 student student 4096 May  5 10:59 Desktop
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Documents
+drwxr-xr-x 3 student student 4096 May  9 17:43 Downloads
+-rw-r-xr-x 1 student student  674 May  9 19:01 ls.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Music
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Pictures
+-rw-r-xr-x 1 student student   38 May  9 19:01 pid.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Public
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Templates
+-rwxrw-rw- 1 student student    0 May  9 19:01 test.txt
+drwxr-xr-x 2 student student 4096 Nov  4  2020 Videos
+smash> smash: got an alarm
+smash: timeout 3 sleep 10 timed out!
+smash> smash> smash: sending SIGKILL signal to 6 jobs:
+2:  sleep 200
+4: sleep 100&
+5: sleep 200&
+7:  sleep 400&
+8: sleep 500&
+11:  timeout 3 sleep 10 &

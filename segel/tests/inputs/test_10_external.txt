@@ -1,0 +1,41 @@
+ls
+ls -l
+ls -l -a
+sleep 
+echo hello
+mkdir gal tal
+rm -d gal tal
+blabla 
+jobs
+
+mkdir ga?l.bla
+mkdir ta?l.bla
+rm -d *.bla
+mkdir gal.bla
+rm -d g?l.bla
+jobs
+
+ls -l&
+ls -l &
+ls -l -a&
+ls -l -a &
+jobs
+sleep 5&
+jobs
+echo
+
+mkdir ga?l.bla&
+mkdir ta?l.bla &
+rm -d *.bla&
+mkdir ga?l.bla &
+rm -d *.bla &
+mkdir gal.bla &
+rm -d g?l.bla &
+jobs
+echo
+
+quit kill
+
+
+
+

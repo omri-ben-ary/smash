@@ -1,0 +1,38 @@
+pwd
+cd -
+pwd
+cd 
+pwd 
+cd . 
+pwd
+cd ..
+pwd 
+cd -
+pwd
+cd - 
+pwd
+cd gal tal 
+pwd
+cd gal
+pwd
+cd /home/student
+pwd 
+cd &
+pwd
+cd& 
+pwd 
+cd& . 
+pwd
+cd & . 
+pwd
+cd /home& 
+pwd
+cd .. & 
+pwd
+cd -&
+pwd
+cd - & 
+pwd
+cd /home/student tal& //error
+quit kill
+

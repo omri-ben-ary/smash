@@ -1,0 +1,53 @@
+chprompt Jeffry_Epstein_didn’t_kill_himself
+chprompt
+showpid
+pwd
+cd -
+cd dir1 dir2
+cd /home/student
+pwd
+cd ..
+pwd
+cd -
+pwd
+sleep 100&
+ sleep 200
+^Z
+jobs
+sleep 100&
+sleep 200&
+sleep 300&
+ sleep 400&
+sleep 500&
+jobs
+fg 5
+^C
+bg 4
+kill -9 1
+ showpid > pid.txt
+ cat pid.txt
+ showpid >> pid.txt
+ cat pid.txt
+echo my_name_is_gal
+jobs
+bg 10
+ ls -l > ls.txt
+ cat ls.txt
+ cat pid.txt | grep smash
+ showpid | grep smash
+jobs
+setcore 8 0
+setcore 9 1
+ps -o pid,psr,command
+getfiletype temp.txt
+touch test.txt
+ls -l
+chmod 444 test.txt
+ls -l
+chmod 666 test.txt
+ls -l
+chmod 766 test.txt
+ls -l
+timeout 3 sleep 10
+ timeout 3 sleep 10 &
+quit kill

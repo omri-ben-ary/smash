@@ -1,0 +1,14 @@
+total 21108
+-rwxrwxr-x 1 student student     8168 May  8 21:55 a.out
+-rw-rw-r-- 1 student student 20609066 Mar  6 19:18 bcompare-4.4.6.27483_amd64.deb
+-rw-rw-r-- 1 student student     9188 May  8 20:18 build.ninja
+-rw-rw-r-- 1 student student    14200 Apr 22 15:40 CMakeCache.txt
+drwxrwxr-x 5 student student     4096 May  8 20:18 CMakeFiles
+-rw-rw-r-- 1 student student     1660 Apr 22 15:40 cmake_install.cmake
+-rwxrwxr-x 1 student student   468712 May  8 22:32 HW1
+-rw-r--r-- 1 student student     3385 May  5  2022 instructions.txt
+-rw-rw-r-- 1 student student       38 May  8 21:55 loop.c
+-rw-r-xr-x 1 student student        0 May  8 22:33 ls.txt
+-rwxrwxr-x 1 student student   468712 May  8 21:11 smash
+drwxrwxr-x 3 student student     4096 Apr 22 15:40 Testing
+drwx------ 7 student student     4096 May  8 21:12 tests

@@ -1,0 +1,12 @@
+getfiletype /home/student/Desktop/smash/smash/segel/bamba
+getfiletype /dev/sda1     &
+getfiletype /dev/tty0 &
+getfiletype /home/student/Desktop/smash/smash/segel/a.out
+getfiletype /home/student/Desktop/smash/smash/segel/test
+getfiletype /run/systemd/journal/stdout
+getfiletype ../
+getfiletype /tmp/smash_test&
+getfiletype
+getfiletype gal is gay
+getfiletype gal_is_gay.txt
+quit kill
